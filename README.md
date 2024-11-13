@@ -63,3 +63,23 @@ Visualize training statistics, activation patterns, and filter evolution.
 Implement tools to observe how the network refines its filters over time.
 Expected Results
 With this series of tasks, the model is expected to achieve 60%-70% accuracy on the test set, although state-of-the-art results for CIFAR10 reach up to 99.7%.
+
+
+
+
+
+Get to know  data: Load data and define datasets
+CIFAR10 contains 5 batches that can be used for training/validation, and one batch that consists of the test set. In order to train your network, you will have to define a training set and a validation set. Do not use the test set as training data, and do not use any knowledge on the labels of the test set (being a publicly available dataset, we cannot avoid exposing the labels of the test set).
+
+Think of the best way to split data into training and validation set. Note that the format that layers in convolutional networks like (at least in the Keras/Tensorflow libraries that we are using), is as follows:
+
+(n_samples, rows, cols, n_channels)
+This means that each training (but also validation and test) sample needs to have four dimensions. This kind of structure (multi-dimensional array), is called a tensor. In practice, this format is also convenient because the first index of the tensor refers to the sample itself, so we can use:
+
+tensor[i]
+to extract the i-th example.
+
+During training, several samples will be used to update the parameters of a network. In the case of CIFAR10, if we use M samples per mini-batch, the shape of the mini-batch data is:
+
+(M, 32, 32, 3)
+Make sure data is organized in this way, for the training, validation and test datasets.
